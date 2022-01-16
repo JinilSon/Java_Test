@@ -1,0 +1,64 @@
+unhandled event loop exception
+: 힙 영역이 부족하기에 나타나는 에러
+	해결방안 : eclipse.ini 파일의 Xms(최소) 파일을 늘려주면 된다.
+
+not properly disposed SWT resource
+: 이클립스의 설정 문제(아직 해결방법 없음)
+
+
+-----------------------  maven 관련 --------------------------------
+Missing artifact
+ : pom.xml이 선언해놓은 jar파일을 받지 못하는 에러
+	해결방안 : Project파일 우클릭 - Maven - Download Source
+
+invalid input URL: ~
+: 정확한 원인은 알수 없지만 갱신과 관련된 문제(메이븐)
+	해결방안 : 메이븐 갱신을 통해 없앨 수 있다.
+
+The fully qualified name of the bean's class, except if it serves only as a parent definition for child 
+ bean definitions.
+ : 해당 의존성이 제대로 import 되지 않았을 때 발생
+	해결방안 : dependency의 artifactId의 오타를 확인 후 수정,
+		 가져온 방식이 release 방식이 맞는 지를 확인
+
+---------------------- JUnit 관련 -----------------------------------
+java.lang.NoClassDefFoundError: org/junit/runner/manipulation/Filter
+: Java 9 이상에서는 Modulepath에 추가하면 따로 모듈 설정을 해야 접근할 수 있다.
+  간단하게 클래스 패스에 등록하면 된다. Properties > Java Build Path > Libraries > Classpath > AddLibrary(클래스에) > JUnit
+
+
+---------------------- Apache 관련 ----------------------------------
+An incompatible version [1.1.0] of the ARP based Apache Tomcat Native Library is installed, while Timcat requires version [1.2.14]
+: ARP기반(라이젠) Apache tomcat Native 라이브러리 호환 불가 버전 메세지(현재 설치된 버전이 과거 버전임을 알림)
+ ㄴ> 해결방안 : (Window 및 Linux에 따라 해결방법이 다름.
+	- Window(Java와 tomcat에 native를 따로 설정해 주어야 한다.
+	 1. java/jre/bin에 tcnative-1.dll을 넣기
+	 2. tomcat_home/bin에 넣기
+	 tcnative-1.dll의 경로	http://archive.apache.org/dist/tomcat/tomcat-connectors/native/
+
+Can't load AMD 64-bit .dll on a IA 32-bit platform
+: 자바 프로젝트에서 DLL을 호출할 때 나타나는 에러로 빌드한 DLL파일은 32비트이지만 JVM은 64비트이기 때문에 발생하는 에러이다.
+ ㄴ> 해결방안 : dll파일을 64비트로 빌드한다, JVM을 32비트로 설정하여 컴파일한다.
+  ㄴ> 혹시 jdk, jre 모두 32비트 인데도, 이와 같은 에러가 발생한다면, apache의 bin폴더의 tcnative의 비트가 64비트이기 때문이다. 이것을 32비트 파일로 다운 덮어쓰기 해주면 된다.
+
+ JVM 32bit와 64bit와의 차이점 및 고려 사항(링크)
+ : https://developer-youn.tistory.com/27
+
+ JDK와 JRE의 차이점(링크)
+ : https://goodgid.github.io/Java-JDK-JRE/
+
+No Spring WebApplicationInitializer types detected on classpath
+:이클립스에서 모종의 이유로 web.xml 및 디스패쳐 서블릿 로드에 실패했다는 것이다.
+ 보통 아무것도 건드리지 않았을 때, 이 에러가 일어났다면, 
+  ㄴ> 해결방법 : Project -> Clean... -> Clean all , 아파치 서버 우클릭(Clean) 및 삭제 재 할당
+ 만약 jdk 변경 및 아파치 서버 삭제 재 할당을 했을 경우 발생했다면,
+  ㄴ> 해결방법 : Project Expolorer -> Server -> server.xml -> <Context> 태그의 path 부분을 확인해보자. -> path = "/"
+       설명 : path 부분이 프로젝트 명으로 할당되어 있을 경우, web project setting등에서 아무리 프로젝트 명을 /(루트)로 지정했다 한들, 서버가 받아들이는 시작점이 프로젝트 이름을 넣은 url이 된다.
+               즉, http://localhost:8080/프로젝트명 으로 들어오는 경우만 인식하겠다라는 말이다.
+	  본래에는, web project setting에 '/'이 설정되어 있다면 정상이겠지만, 이클립스가 설정 로드 에러를 발생했다면, 해당 server.xml파일로 들어가 직접 설정해주는 것이 해결법이 된다.
+	 
+
+ 
+
+
+

@@ -1,0 +1,61 @@
+-----  사용할 DB지정 ------
+DB 사용 : Use DB명;
+
+-----  로그인  ------
+로그인 : mysql -u 사용자ID -p 
+	// 이후 비밀번호 입력
+
+-----  조회  -------
+DB 조회 : show databases;
+현재 사용 중인 DB 조회 : SELECT DATABASE();
+현재 사용 중인 테이블 조회 : SHOW TABLES;
+특정 테이블 스키마 조회 : DESC 테이블명;
+
+------ 현재 mysql 내에 있는 사용자 및 root 계정 조회 -------
+1. ROOT 계정으로 접속
+2. USE MYSQL;
+3. SELECT USER, HOST FROM USER;
+
+------  사용자 생성, 권한 부여 ------
+사용자 추가 : create user '사용자'@'localhost'(또는 %);
+( %는 외부에서의 접근을 허용한다.)
+사용자 제거 : drop user '사용자'@'localhost';
+권한 부여(전체 권한) : grant all privileges on *.* '사용자'@'localhost';
+권한 부여 : grant all privileges on DB명.테이블명 to '사용자ID'@'localhost';
+변경사항 반영하기 : flush privileges;
+사용자 권한 확인하기 : show grants for '사용자명'@'localhost';
+
+--------- DB -------------
+생성 : create database DB명;
+사용자 생성 : create user '{username}'@'%' identified by '{password}';
+
+----------  레코드 --------------
+삽입 : insert into 테이블명 values(v1, v2);
+수정 : update 테이블 set 컬럼명=v1 where 조건;
+삭제 : delete from 테이블명 where 조건;
+칼럼 추가 : alter table 테이블명 add 칼럼명 칼럼타입 조건;
+칼럼 삭제 : alter table 테이블명 drop 칼럼명;
+칼럼 수정 : alter table 테이블명 modify 칼럼명 조건;
+
+
+----------  테이블 엔진 확인 -------------
+SELECT engine FROM information_schema.TABLES where table_name='테이블명' AND table_schema='디비명';
+-------------- 속성 리스트 --------------
+PRIMARY KEY
+NOT NULL
+AUTO_INCREMENT : ID 자동 증가 및 생성할 때 사용(INSERT문 시 ID 입력안해도 자동 생성)
+    ㄴ> ALTER TABLE test AUTO_INCREMENT=1;  // 자동 속성값을 특정값으로 초기화할 때 사용한다.[예제에서는 초기값은 1로 지정됬으며, 초기값보다 높은 수가 있으면 초기화가 되지 않는다]
+    ㄴ> ALTER TABLE test AUTO_INCREMENT=1;  // 자동 속성값을 초기화하면서 동시에, 최대값을 파악하여 최대값을 기준으로 초기화한다.
+          SET @COUNT = 0;			 // 하지만 이 역시도 deleteAll을 하면 설정값이 날아가 id 생성이 본래 값으로 돌아간다.
+          UPDATE test SET AUTO_INCREMENT id = @COUNT:=@COUNT+1;
+
+--------- 테이블 생성
+
+---------- InnoDB란 ----------------
+MySQL 5.5 이후 기본적으로 사용되고 있고, MyISAM 보다 많은 기능을 제공한다.
+
+
+
+
+
+

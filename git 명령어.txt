@@ -1,0 +1,79 @@
+git config(HEAD를 설정)
+	git config --global user.name "깃허브 이름"
+	git config --global user.email " 깃허브 가입 이메일"
+git config 출력
+	git config user.name
+	git config global user.email
+	git remote -v
+git coinfig 설정 삭제
+	git config --global --unset user.name
+	git config --global --unset user.email
+git push 과정 명령어
+	git init
+	git status
+	git add 파일디렉터리
+	git commit -m "주석"
+	git push -u origin master
+git remote 연결 및 유사 과정
+	git remote add origin "깃허브 레포지토리 주소"		// 연결하고 싶은 remote주소를 등록
+	git remote rm origin 				// 등록되어 있는 remote 주소를 제거
+git add 취소(deprecated, restore로 대체)
+	git reset HEAD
+git commit 취소(deprecated, restore로 대체)
+	git log --oneline
+	git reset --hard 시리얼넘버          // 해당 시리얼넘버의 commit 까지 되돌아가서 그 앞의 commit 을 없던 것으로 처리
+
+git checkout 명령어(deprecated)
+: 사용할 브랜치를 선택하는 명령어
+	git checkout [브랜치명] 	// 브랜치 선택
+	git checkout -b [브랜치명]	// 브랜치 작성과 체크아웃을 한꺼번에 실행할 수 있다.
+
+git add 명령어
+	git add <파일/디렉토리 경로>
+	git add .		// 현재 디렉토리의 모든 변경 내용을 스테이징 영역에 추가
+	git add -A	// 작업 디렉토리 내의 모든 변경 내용을 몽땅 스테이징 영역으로 넘김
+	git add -p	// 각 변경사항을 확인 후, 스테이징 영역으로 넘기거나 제외한다.
+
+git remote 명령어
+	git remote add [브랜치명] "깃허브 레포지토리 주소"	// remote repository 등록
+	git remote rm [브랜치명] "깃허브 레포지토리 주소"	// remote repository 삭제
+	git remote -v					// remote repository 조회
+
+git switch/restore
+: checkout을 대체하는 명령어
+ 하나의 명령어가 가진 기능이 너무 많았기에 대체되었다.
+	git switch [브랜치명]			// 브랜치 전환 기능을 담당
+	git switch -c [브랜치명]			// -c : create 새로만든 브랜치로 전환(없을 경우)
+	git switch -c [브랜치명] [기준 브랜치 or commit] // 기준이 되는 브랜치 및 커밋 아래 새 브릿지 생성
+	git switch -m [구 브랜치명] [신 브랜치명] 	// 브랜치 이름 변경
+	git restore [파일명]				// 파일의 수정내용을 복원하는 기능을 담당
+	git restore --staged [파일명]			// git add를 통해서 수정내용을 stage에 넣었을 때, 이를 제거하기 위한 기능
+
+git clone 명령어
+: 인터넷에 있는 소스를 로컬에 다운 받고 연결한다고 보면된다. 'git remote add + git pull' 동작을 거의 똑같이 한다고 보면 된다.
+ 두 명령어 간의 차이점은 git clone의 경우 HEAD를 자동으로 맞추는 반면, add + pull은 직접 입력하여 HEAD를 설정한다는 것에 있다.
+ 주로 로컬에 아무것도 없을 때 서버의 프로젝트를 내려받는 명령어이다.
+	git clone [저장소 주소]  // 저장소의 모든 내용 내려받기
+	git clone -b [브랜치명] --single-branch [git주소]  // 저장소의 브랜치 단위로 선택 및 내려받기
+
+git fetch
+: remote repository 불러오기 기능.(덮어쓰기X, 병합X)
+로컬에는 저장되지 않고 브랜치로 checkout하여 변경된 내용들을 '확인만' 하는 명령어
+	* fetch가 협업에서 필요한 이유
+	: 협업 시, 기준 코드에 따라 실수가 발생할 여지가 많이 생길 수 있다.
+	만약, A 코드를 사용하여 연장코딩을 하는 도중, 팀원 B가 push를 하게 되면 runtime code는 B의 코드가 된다.
+	이후, 연장코딩을 마치고 push를 하게 되면, 기준 코드가 B가 되기에 에러가 나게된다.
+	이때, 기준 코드가 변경되었는 지, 확인하기 위한 명령어가 fetch이다.
+
+git pull 명령어
+: 원격저장소에 있는 변경사항들을 로컬 저장소로 가져와 합치는 명령어이다.(덮어쓰기O, 병합O)
+ 자동으로 병합되기 때문에 어떤 내용이 병합되는지 파악할 수 없다는 점의 한계 때문에,
+ pull을 하기 전에 fetch를 하여 병합되는 코드들을 파악하는 점이 당연시 되고 있다.
+	git pull origin master
+		** pull은 합병 불러오기 
+
+git log
+: fetch한 commit 내역도 확인 가능하다.
+
+
+	

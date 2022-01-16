@@ -1,0 +1,2 @@
+java.sql.SQLException: Parameter index out of range (1 > number of parameters, which is 0).
+: 따옴표(') 나 쌍따옴표(")의 문제, 문자열이 들어가는 곳을 유념히 확인해야 한다.
