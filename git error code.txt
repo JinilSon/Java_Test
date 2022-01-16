@@ -1,0 +1,6 @@
+fatal: The current branch master has no upstream branch.
+: git repository를 생성한 후, 처음 push를 하는 경우 발생하는 코드
+	해결방법 : git push --set-upstream origin master를 입력하거나
+		git config --global push.default current	// 이와 같이 push의 기본 행동으로 current를 지정 시, 현재의 브랜치와 동일한 이름의 브랜치에 push를 할 수 있다.
+							// 참조 : https://codeac.tistory.com/120
+

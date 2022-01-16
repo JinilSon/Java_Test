@@ -36,7 +36,8 @@ git add 명령어
 
 git remote 명령어
 	git remote add [브랜치명] "깃허브 레포지토리 주소"	// remote repository 등록
-	git remote rm [브랜치명] "깃허브 레포지토리 주소"	// remote repository 삭제
+	git remote rm [브랜치명] "깃허브 레포지토리 주소"	// remote repository 선택 삭제
+	git remote rm [브랜치명]				// 현재 등록된 remote repository 삭제
 	git remote -v					// remote repository 조회
 
 git switch/restore
