@@ -5,6 +5,9 @@ unhandled event loop exception
 not properly disposed SWT resource
 : 이클립스의 설정 문제(아직 해결방법 없음)
 
+the compiler compliance specified is x.x but a x,x
+: 이클립스 컴파일러 버전 설정 문제
+	해결방안 : preference -> Java compiler -> 버전 변경
 
 -----------------------  maven 관련 --------------------------------
 Missing artifact

@@ -1,0 +1,6 @@
+1. datasource를 활용하여 자바 코드에서가 아닌 xml에서의 db연결을 하려함
+ 하지만 종속성 spring-jdbc 종속성 연결을 했음에도 아래와 같은 에러가 남
+The fully qualified name of the bean's class, except if it serves only as a parent definition for child 
+ bean definitions.
+--- 해결 방법 -----
+문제는 종속성 추가 시에, 본인이 release 버전이 아닌 module 버전으로 종속했기 때문에 인식되지 않았던 것!!

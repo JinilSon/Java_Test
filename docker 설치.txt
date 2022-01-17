@@ -1,0 +1,13 @@
+Docker를 설치하는 법
+
+sudo yum -y update
+sudo yum -y install yum-utils device-mapper-persistent-data lvm2
+
+도커 안정적 리포지토리를 시스템에 추가
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+최신 버전의 도커 CE를 설치
+sudo yum -y install docker-ce
+
+도커 데몬 부트 시 자동 실행 설정
+sudo systemctl status docker
