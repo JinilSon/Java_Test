@@ -8,6 +8,10 @@ not properly disposed SWT resource
 the compiler compliance specified is x.x but a x,x
 : 이클립스 컴파일러 버전 설정 문제
 	해결방안 : preference -> Java compiler -> 버전 변경
+----------------------- DB 관련 ------------------------------------
+Could not load JDBC driver class [com.mysql.cj.jdbc.Driver]
+: 드라이버 클래스 로드 불가
+	해결방안 : mysql connector jar파일을 다운받아 lib폴더에 넣는다.
 
 -----------------------  maven 관련 --------------------------------
 Missing artifact
@@ -34,7 +38,7 @@ java.lang.NoClassDefFoundError: org/junit/runner/manipulation/Filter
 An incompatible version [1.1.0] of the ARP based Apache Tomcat Native Library is installed, while Timcat requires version [1.2.14]
 : ARP기반(라이젠) Apache tomcat Native 라이브러리 호환 불가 버전 메세지(현재 설치된 버전이 과거 버전임을 알림)
  ㄴ> 해결방안 : (Window 및 Linux에 따라 해결방법이 다름.
-	- Window(Java와 tomcat에 native를 따로 설정해 주어야 한다.
+	- Windo  w(Java와 tomcat에 native를 따로 설정해 주어야 한다.
 	 1. java/jre/bin에 tcnative-1.dll을 넣기
 	 2. tomcat_home/bin에 넣기
 	 tcnative-1.dll의 경로	http://archive.apache.org/dist/tomcat/tomcat-connectors/native/
@@ -43,7 +47,7 @@ Can't load AMD 64-bit .dll on a IA 32-bit platform
 : 자바 프로젝트에서 DLL을 호출할 때 나타나는 에러로 빌드한 DLL파일은 32비트이지만 JVM은 64비트이기 때문에 발생하는 에러이다.
  ㄴ> 해결방안 : dll파일을 64비트로 빌드한다, JVM을 32비트로 설정하여 컴파일한다.
   ㄴ> 혹시 jdk, jre 모두 32비트 인데도, 이와 같은 에러가 발생한다면, apache의 bin폴더의 tcnative의 비트가 64비트이기 때문이다. 이것을 32비트 파일로 다운 덮어쓰기 해주면 된다.
-
+   ㄴ> jre 라이브러리의 적용이 끝나고 나면, apache 서버의 담당 라이브러리를 모두 재적용 시켜 주어야 한다.(Window -> Preperence -> Server -> Runtime Environments -> edit -> jre
  JVM 32bit와 64bit와의 차이점 및 고려 사항(링크)
  : https://developer-youn.tistory.com/27
 

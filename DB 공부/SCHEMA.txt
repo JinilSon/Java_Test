@@ -25,3 +25,61 @@ FILES VARCHAR(1000),
 PUB INTEGER DEFAULT 0 NOT NULL,
 PRIMARY KEY(ID)
 );
+
+--------------------webshopprj DB 스키마들-----------------------------------
+제품, 사용자, 판매자
+사용자 + 제품(연결된 구매한 제품들의 ID)
+사용자 + 판매자(이 외의 속성 : 연결된 업로드 제품들)
+ 
+
+CREATE TABLE PRODUCT
+(
+ID INTEGER NOT NULL AUTO_INCREMENT,
+TITLE VARCHAR(50) NOT NULL,
+CATEGORY VARCHAR(30) NOT NULL,
+PRICE INTEGER NOT NULL,
+DISCOUNT INTEGER NOT NULL DEFAULT 0,
+PICTURE VARCHAR(50),
+DISCRIPTION VARCHAR(100),
+UP_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+PRIMARY KEY(ID)
+);
+// ID는 자동 생성 
+// 사진들은 모두 url 형태로 저장
+// 업로드한 날짜는 current_timesatmp로 저장
+
+CREATE TABLE USER
+(
+ID VARCHAR(30) NOT NULL,
+PW VARCHAR(30) NOT NULL,
+NAME VARCHAR(20) NOT NULL,
+BIRTHDATE DATE NOT NULL,
+PHONENUM VARCHAR(20) NOT NULL,
+EMAIL VARCHAR(30) NOT NULL,
+B_ITEM_NUM VARCHAR(1000),
+T_PAY INTEGER DEFAULT 0,
+C_POINT INTEGER DEFAULT 0,
+PRIMARY KEY(ID)
+);
+// 구매한 품목의 (ID, 수량) 대로 string 형태로 받아 토큰화 및 구분 조회
+// T_PAY : TOTAL PAY의 약자, 그 달에 사용한 총 액수
+// 매 달 마다 초기화 하는 비지니스 로직이 필요
+// 매 달 마다 T_PAY 별로 등급을 나누는 비지니스 로직이 필요
+// 등급에 따른 보상 및 혜택은 추후..
+
+// C_POINT : CURRENT POINT의 약자, 현재 가지고 있는 포인트의 양
+
+CREATE TABLE SELLER
+(
+ID VARCHAR(30) NOT NULL,
+S_ITEM_NUM VARCHAR(1000),
+PRIMARY KEY(ID)
+);
+
+
+insert into product(title, category, price, discount) values('셔츠', '셔츠', 20000, 10);
+insert into user(id, pw, name, birthdate, phonenum, email, b_item_num, t_pay, c_point) values('spring', 'spring1234', '진일', '1997-08-10', '010-3333-3333', 'spring@spring.co.kr', '셔츠', 20000, 20);
+
+
+
+

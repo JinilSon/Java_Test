@@ -1,0 +1,60 @@
+-- MYSQL --
+	- 정수형
+	INTEGER : 
+	TINYINT : 1byte 크기의 정수형 데이터 타입
+	SMALLINT : 2byte 크기의 정수형 데이터 타입
+	MEDIUMINT : 3byte 크기의 정수형 데이터 타입
+	INT : 4byte 크기의 정수형 데이터 타입
+	BIGINT : 8byte 크기의 정수형 데이터 타입
+	- 실수형
+	FLOAT(길이, 소수) : 4byte의 부동 소수점 데이터 타입으로 고정 소수점 사용 형태
+	DECIMAL(길이, 소수) : 고정 소수형 데이터 타입고정(길이 + 1byte) - 소수점을 사용한다.
+	DOUBLE(길이, 소수) : 8byte의 부동 소수형 데이터 타입, 문자열로 저장
+	- 날짜형
+	DATE : 날짜(년도, 월, 일)형태의 기간 표현 데이터 타입(3byte)
+	TIME : 날짜(시, 분, 초)형태의 기간 표현 데이터 타입(3byte)
+	DATETIME : 날짜와 시간 형태의 기간 표현 데이터 타입(8byte)
+	TIMESTAMP : 날짜와 시간 형태의 기간 표현 데이터 타입(4byte), 자동으로 그 날짜와 시간이 저장된다
+	YEAR : 년도 표현 데이터 타입(1byte)
+	-문자형
+	CHAR : 최대 255byte
+	VARCHAR : 가변형 길이의 타입
+	MIDEUMTEXT(n) : 가변길이 문자열 데이터 타입, 최대 약 4GB
+	TINYTEXT(n) : 문자열 데이터 타입, 최대 255byte
+	TEXT(n) : 문자열 데이터 타입, 최대 65535byte
+	
+	- 이진 데이터
+	BINARY(n), BYTE(n) : CHAR 형태의 이진 데이터 타입(최대 255byte)
+	VARBINARY(n) : VARCHAR 형태의 이진 데이터 타입(최대 65535byte)
+	TINYBLOB(n) : 이진 데이터 타입(최대 65535byte)
+	MEDIUMBLOB(n) : 이진 데이터 타입(최대 16777215byte)
+	LONGBLOB(n) : 이진 데이터 타입(최대 4294967295byte)
+
+-- ORACLE --
+	- 정수형
+	NUMBER : 38자리 정도의 숫자 저장가능한 정수형 데이터 타입
+	FLOAT(P) : NUMBER의 하위타입 / P(1~128, 디폴트 : 128) / 이진수 기준 / 최대 22byte
+	- 실수형
+	NUMBER(P, S) : P, S로 표현 숫자 데이터 타입으로 실수 및 정수 표현가능
+	BINARY_FLOAT : 최대 4byte
+	BINARY_DOUBLE : 최대 8byte
+	- 날짜형
+	DATE : 고정 길이 날짜
+	INTERVAL_YEAE : 날짜(년도, 월) 형태의 기간 표현 데이터 타입
+	INTERVAL_DAY : 요일, 시, 분, 초
+	TIMESTAMP : ms(밀리초)까지 표현
+	TIMESTAMP_WITH TIME ZONE : 날짜 및 시간대 형태
+	TIMESTAMP_WITH LOCAL TIME ZONE : 저장 시 데이터베이스 시간대를 준수, 조회 시 조회하는 클라이언트 시간 표현 데이터 타입 
+	SYSDATE
+	- 문자형
+	CHAR(n) : 최대 2000byte
+	NCHAR(n), NVARCHAR(n) : 고정 길이 유니코드 데이터 타입, nvarchar은 nchar의 2배 가용 범위를 가짐
+	VARCHAR2 : 가변형 길이의 타입(varchar과 거의 동일, 최대 4000byte)
+	CLOB : 대용량 텍스트 데이터 타입, 최대 4Gbyte
+	NCLOB : 대용량 텍스트 유니코드 데이터 타입, 최대 4Gbyte
+	- 이진 데이터
+	RAW(n) : 가변 길이 이진 데이터 타입(최대 2Gbyte)
+	LONGRAW : 가변 길이 이진 데이터 타입(최대 4GByte)
+	BLOB : 대용량의 바이너리 데이터를 저장하기 위한 데이터 타입
+	BFILE : 대용량의 바이너리 데이터를 파일 형태로 저장하기 위한 타입
+	
