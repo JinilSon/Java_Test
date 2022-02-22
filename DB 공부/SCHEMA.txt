@@ -69,17 +69,21 @@ PRIMARY KEY(ID)
 
 // C_POINT : CURRENT POINT의 약자, 현재 가지고 있는 포인트의 양
 
-CREATE TABLE SELLER
+
+CREATE TABLE ORDERS
 (
-ID VARCHAR(30) NOT NULL,
-S_ITEM_NUM VARCHAR(1000),
-PRIMARY KEY(ID)
+ID INTEGER AUTO_INCREMENT,
+USERID VARCHAR(30) NOT NULL,
+PRODID INTEGER NOT NULL,
+PRIMARY KEY(ID),
+FOREIGN KEY(USERID) REFERENCES USER(ID),
+FOREIGN KEY(PRODID) REFERENCES PRODUCT(ID)
 );
+// order는 order by에서 사용하기 때문에 사용할 수 없는 키워드
+// 정 사용하고 싶다면 `order`로 사용이 가능하지만 조회도 `order`로 해야한다.
 
-
-insert into product(title, category, price, discount) values('셔츠', '셔츠', 20000, 10);
-insert into user(id, pw, name, birthdate, phonenum, email, b_item_num, t_pay, c_point) values('spring', 'spring1234', '진일', '1997-08-10', '010-3333-3333', 'spring@spring.co.kr', '셔츠', 20000, 20);
-
-
-
+CREATE TABLE ORDER
+(
+ID INTEGER AUTO_INCREMENT PRIMARY KEY
+);
 
