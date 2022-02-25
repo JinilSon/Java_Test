@@ -1,0 +1,20 @@
+스프링은 스프링 시큐리티를 기반으로 동작하는데,
+스프링 시큐리티는 Filter를 기반으로 동작하지만,
+만약 form의 인코딩 타입이 "multipart/form-data로 파일을 업로드하는 경우,
+기본적으로 Filter Chain을 타지 않는 제약사항이 발생한다.
+
+이 경우
+springMultipartFilter를 적용하여야 하며,
+springSecurityFilterChain 앞에 위치해야 한다.
+
+이 후, WAS(tomcat)가 해당 MultiparFile을 올바르게 파싱할 수 있게
+was의 context.xml 파일에 
+allowCasualMultipartPasing 값을 true로 넣어주어야 한다.
+ex)
+	<Context allowCasualMultipartParsing="true">
+		...
+	</Context>
+
+** 주의점 ***
+formdata 타입으로 전송 시에, JQuery로 ajax를 사용하여 전송한다 할 지라도,
+xhr 즉, XMLHttpRequest header에 csrf_token을 넣는 방식을 통하지 않는다.
